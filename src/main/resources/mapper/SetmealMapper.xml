@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chen.reggie.mapper.SetmealMapper">
+    <!--
+        collection为变量名，open为where与括号之间的部分，close为），
+        item为遍历的值，separator为分隔符，这里集合元素之间以”,“分隔
+        select * from t_account where id in (1,2,3)   id in (1,2,3)就等于id=1 or id=2 or id=3
+    -->
+    <update id="updateStatus">
+        update setmeal set status = #{status}
+        <where>
+            <foreach collection="ids" open="id in (" close=")" item="id" separator=",">
+                #{id}
+            </foreach>
+        </where>
+    </update>
+</mapper>
